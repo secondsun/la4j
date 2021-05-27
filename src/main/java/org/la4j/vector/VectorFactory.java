@@ -27,7 +27,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * An abstract vector factory.
  *
- * @param <T>
+ * @param <T> subtype of vector
  */
 public abstract class VectorFactory<T extends Vector> {
 

@@ -27,7 +27,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * An abstract matrix factory.
  *
- * @param <T>
+ * @param <T> type of matrix
  */
 public abstract class MatrixFactory<T extends Matrix> {
 

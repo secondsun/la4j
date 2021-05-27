@@ -155,7 +155,7 @@ public final class Matrices {
     };
 
     /**
-     * Checks whether the matrix is a lower bi-diagonal matrix</a>.
+     * Checks whether the matrix is a lower bi-diagonal matrix.
      */
     public static final MatrixPredicate LOWER_BIDIAGONAL_MATRIX = new MatrixPredicate() {
         @Override

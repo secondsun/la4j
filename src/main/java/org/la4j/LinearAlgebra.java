@@ -142,9 +142,9 @@ public final class LinearAlgebra {
     /**
      * Reference to the Gauss elimination method-based inverter factory.
      *
-     * Note: this version of the Gauss elimination method does not use a
-     * pivot and does not swap either columns or rows. As a result, it will fail
-     * if there is a zero on the diagonal.
+     * Note: this version of the Gauss elimination method does not use a pivot and
+     * does not swap either columns or rows. As a result, it will fail if there is a
+     * zero on the diagonal.
      */
     public static final InverterFactory NO_PIVOT_GAUSS = InverterFactory.NO_PIVOT_GAUSS;
 
@@ -181,56 +181,65 @@ public final class LinearAlgebra {
     /**
      * Reference to QR decompositor factory.
      */
-     public static final DecompositorFactory QR = DecompositorFactory.QR;
+    public static final DecompositorFactory QR = DecompositorFactory.QR;
 
     /**
      * Reference to SVD decompositor factory.
      */
     public static final DecompositorFactory SVD = DecompositorFactory.SVD;
 
-    public final static VectorVectorOperation<Double> OO_PLACE_INNER_PRODUCT =
-        new OoPlaceInnerProduct();
+    public final static VectorVectorOperation<Double> OO_PLACE_INNER_PRODUCT = new OoPlaceInnerProduct();
 
-    public final static VectorVectorOperation<Vector> OO_PLACE_VECTORS_ADDITION =
-        new OoPlaceVectorsAddition();
+    public final static VectorVectorOperation<Vector> OO_PLACE_VECTORS_ADDITION = new OoPlaceVectorsAddition();
 
-    public final static VectorVectorOperation<Vector> OO_PLACE_VECTOR_HADAMARD_PRODUCT =
-        new OoPlaceVectorHadamardProduct();
+    public final static VectorVectorOperation<Vector> OO_PLACE_VECTOR_HADAMARD_PRODUCT = new OoPlaceVectorHadamardProduct();
 
-    public final static VectorVectorOperation<Vector> OO_PLACE_VECTORS_SUBTRACTION =
-        new OoPlaceVectorsSubtraction();
+    public final static VectorVectorOperation<Vector> OO_PLACE_VECTORS_SUBTRACTION = new OoPlaceVectorsSubtraction();
 
-    public final static VectorMatrixOperation<Vector> OO_PLACE_VECTOR_BY_MATRIX_MULTIPLICATION =
-        new OoPlaceVectorByMatrixMultiplication();
+    public final static VectorMatrixOperation<Vector> OO_PLACE_VECTOR_BY_MATRIX_MULTIPLICATION = new OoPlaceVectorByMatrixMultiplication();
 
-    public final static VectorVectorOperation<Matrix> OO_PLACE_OUTER_PRODUCT =
-        new OoPlaceOuterProduct();
+    public final static VectorVectorOperation<Matrix> OO_PLACE_OUTER_PRODUCT = new OoPlaceOuterProduct();
 
-    public final static MatrixMatrixOperation<Matrix> IN_PLACE_COPY_MATRIX_TO_MATRIX =
-        new InPlaceCopyMatrixToMatrix();
+    /**
+     * TODO: Javadoc
+     */
+    public final static MatrixMatrixOperation<Matrix> IN_PLACE_COPY_MATRIX_TO_MATRIX = new InPlaceCopyMatrixToMatrix();
 
-    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRIX_ADDITION =
-        new OoPlaceMatricesAddition();
+    /**
+     * TODO: Javadoc
+     */
+    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRIX_ADDITION = new OoPlaceMatricesAddition();
+    /**
+     * TODO: Javadoc
+     */
+    public final static MatrixVectorOperation<Vector> OO_PLACE_MATRIX_BY_VECTOR_MULTIPLICATION = new OoPlaceMatrixByVectorMultiplication();
+    /**
+     * TODO: Javadoc
+     */
+    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRICES_SUBTRACTION = new OoPlaceMatricesSubtraction();
+    /**
+     * TODO: Javadoc
+     */
 
-    public final static MatrixVectorOperation<Vector> OO_PLACE_MATRIX_BY_VECTOR_MULTIPLICATION =
-        new OoPlaceMatrixByVectorMultiplication();
+    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRIX_HADAMARD_PRODUCT = new OoPlaceMatrixHadamardProduct();
+    /**
+     * TODO: Javadoc
+     */
 
-    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRICES_SUBTRACTION =
-        new OoPlaceMatricesSubtraction();
+    public final static MatrixOperation<Matrix> OO_PLACE_MATRIX_BY_ITS_TRANSPOSE_MULTIPLICATION = new OoPlaceMatrixByItsTransposeMultiplication();
+    /**
+     * TODO: Javadoc
+     */
 
-    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRIX_HADAMARD_PRODUCT =
-        new OoPlaceMatrixHadamardProduct();
+    public final static MatrixMatrixOperation<Matrix> OO_PLACE_KRONECKER_PRODUCT = new OoPlaceKroneckerProduct();
+    /**
+     * TODO: Javadoc
+     */
 
-    public final static MatrixOperation<Matrix> OO_PLACE_MATRIX_BY_ITS_TRANSPOSE_MULTIPLICATION =
-        new OoPlaceMatrixByItsTransposeMultiplication();
+    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRICES_MULTIPLICATION = new OoPlaceMatricesMultiplication();
 
-    public final static MatrixMatrixOperation<Matrix> OO_PLACE_KRONECKER_PRODUCT =
-        new OoPlaceKroneckerProduct();
-
-    public final static MatrixMatrixOperation<Matrix> OO_PLACE_MATRICES_MULTIPLICATION =
-        new OoPlaceMatricesMultiplication();
-
-    private LinearAlgebra() {}
+    private LinearAlgebra() {
+    }
 
     // Determine the machine epsilon
     // Tolerance is 10e1
@@ -245,6 +254,9 @@ public final class LinearAlgebra {
         ROUND_FACTOR = roundFactor - 1;
     }
 
+    /**
+     * enums of SolverFactories
+     */
     public static enum SolverFactory {
         GAUSSIAN {
             @Override
@@ -270,6 +282,10 @@ public final class LinearAlgebra {
                 return new ForwardBackSubstitutionSolver(matrix);
             }
         },
+        /**
+         * TODO: Javadoc
+         */
+
         LEAST_SQUARES {
             @Override
             public LinearSystemSolver create(Matrix matrix) {
@@ -305,6 +321,9 @@ public final class LinearAlgebra {
         public abstract LinearSystemSolver create(Matrix matrix);
     }
 
+    /**
+     * enums of InverterFactories
+     */
     public static enum InverterFactory {
         GAUSS_JORDAN {
             @Override
@@ -328,7 +347,14 @@ public final class LinearAlgebra {
         public abstract MatrixInverter create(Matrix matrix);
     }
 
+    /**
+     * Enums of DecompositorFactory implementations
+     */
     public static enum DecompositorFactory {
+        /**
+         * TODO: Javadoc
+         */
+
         CHOLESKY {
             @Override
             public MatrixDecompositor create(Matrix matrix) {
